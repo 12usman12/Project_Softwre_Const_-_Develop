@@ -67,7 +67,7 @@ public class Attendence_foam extends javax.swing.JFrame {
 
         attendence.setBackground(new java.awt.Color(0, 255, 51));
         attendence.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        attendence.setText("Show Data");
+        attendence.setText("Show Attendence");
         attendence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 attendenceActionPerformed(evt);
