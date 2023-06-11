@@ -138,7 +138,7 @@ public class MainPageForStudent extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(204, 204, 204));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setText("View Profile");
+        jButton6.setText("Fee Show");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -290,7 +290,7 @@ public class MainPageForStudent extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-            ViewStudentProfile v = new ViewStudentProfile();
+            FeeShow v = new FeeShow();
             MainPageForStudent m = new MainPageForStudent();
             v.setVisible(true);
             m.setVisible(false);

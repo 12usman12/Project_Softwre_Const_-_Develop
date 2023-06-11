@@ -7,7 +7,11 @@ package group_g_bse203030.bse203022.bse203031;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -124,6 +128,11 @@ public class FeeSummaryGenerate extends javax.swing.JFrame {
         jLabel11.setText("Late Submition");
 
         jButton1.setText("Show");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Insert");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -133,10 +142,25 @@ public class FeeSummaryGenerate extends javax.swing.JFrame {
         });
 
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Update");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Back");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,10 +306,11 @@ public class FeeSummaryGenerate extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scd_project", "root","");
                String sql = "INSERT INTO feesummary(name, id, ChallanID, DateOFIssue, GetCourse, CampusID, ScholarShip, DueDate, LateSubmition, total)"
-                               +"Values('"+name+"','"+id+"','"+ChallanID+"','"+DateOFIssue+"','"+GetCourse+"','"+CampusID+"','"+ScholarShip+"','"+DueDate+",'"+LateSubmition+"','"+Total+"')";
+                               +"Values('"+name+"','"+id+"','"+ChallanID+"','"+DateOFIssue+"','"+GetCourse+"','"+CampusID+"','"+ScholarShip+"','"+DueDate+"','"+LateSubmition+"','"+Total+"')";
                Statement st = con.createStatement();
                st.executeUpdate(sql);  
-               
+               arr = new Object[]{name,id,ChallanID,DateOFIssue,GetCourse,CampusID,ScholarShip,DueDate,Total,LateSubmition};
+               addrow(arr);
                clearScren();
                JOptionPane.showMessageDialog(null, "Sucessfully Insert");
             
@@ -310,7 +335,7 @@ public class FeeSummaryGenerate extends javax.swing.JFrame {
             String contact = jTable1.getModel().getValueAt(row, 6).toString();
             String address = jTable1.getModel().getValueAt(row, 7).toString();
             String contact3 = jTable1.getModel().getValueAt(row, 8).toString();
-            
+            String contact4 = jTable1.getModel().getValueAt(row, 9).toString();
             
                     jTextField1.setText(id);
                     jTextField2.setText(name);
@@ -320,10 +345,117 @@ public class FeeSummaryGenerate extends javax.swing.JFrame {
                     jTextField6.setText(email);
                     jTextField7.setText(String.valueOf(contact));
                     jTextField8.setText(contact3);
-            
+                    jTextField9.setText(contact4);
             
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scd_project", "root","");
+          
+                
+                Statement st = con.createStatement();
+                
+                String sql = "select * from feesummary";
+                ResultSet r = st.executeQuery(sql);
+                
+                while(r.next()){
+                    
+                    String name = r.getString("name");
+                    String id = r.getString("id"); 
+                    String ChallanID = r.getString("ChallanID"); 
+                    String DateOFIssue = r.getString("DateOFIssue"); 
+                    String GetCourse = r.getString("GetCourse");
+                    String CampusID = r.getString("CampusID");
+                    String ScholarShip = r.getString("ScholarShip"); 
+                    String DueDate = r.getString("DueDate");
+                    String LateSubmition = r.getString("LateSubmition");
+                    int total = r.getInt("total");
+                    
+
+                    arr = new Object[]{name,id,ChallanID,DateOFIssue,GetCourse,CampusID,ScholarShip,DueDate,total,LateSubmition};
+                    addrow(arr);
+                       clearScren();
+                       
+                }
+            con.close();    
+            
+            
+        }
+        catch(SQLException ex){
+            System.out.println("Error occure on connecting database");
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewStudentProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String id = jTextField1.getText();
+        
+         try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scd_project", "root","");
+               String sql = "DELETE FROM feesummary WHERE name = '"+id+"' ";
+               
+               Statement st = con.createStatement();
+               st.executeUpdate(sql);  
+               model.removeRow(jTable1.getSelectedRow());
+               JOptionPane.showMessageDialog(null, "Sucessfully Delete", sql, HEIGHT);
+            
+        }
+        catch(Exception ex){
+            System.out.println("Error occure on connecting database");
+            ex.getMessage();
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+         String name = jTextField1.getText();
+        String id = jTextField2.getText();
+        String ChallanID = jTextField3.getText();
+        String DateOFIssue = jTextField4.getText();
+        String GetCourse = jComboBox1.getSelectedItem().toString();
+        String CampusID = jTextField5.getText();
+        String ScholarShip = jTextField6.getText();
+        String DueDate = jTextField7.getText();
+        int Fee = Integer.parseInt(jTextField8.getText());
+        String LateSubmition = jTextField9.getText();
+        
+        
+        int calschol = Integer.parseInt(ScholarShip);
+        int late =Integer.parseInt(LateSubmition);
+        int Total = late+Fee - ((calschol)*Fee/100);
+        
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scd_project", "root","");
+                String sql = "UPDATE feesummary SET name = '"+name+"' ,id = '"+id+"',ChallanID = '"+ChallanID+"',DateOFIssue = '"+DateOFIssue+"' ,GetCourse = '"+GetCourse+"',CampusID = '"+CampusID+"',ScholarShip = '"+ScholarShip+"',DueDate ='"+DueDate+"',total ='"+Total+"',LateSubmition ='"+LateSubmition+"' WHERE name = '"+name+"'";
+               Statement st = con.createStatement();
+               st.executeUpdate(sql);  
+               JOptionPane.showMessageDialog(null, "Sucessfully update", sql, HEIGHT);
+            
+        }
+        catch(Exception ex){
+            System.out.println("Error occure on connecting database");
+            ex.getMessage();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        AdminMainPage a = new AdminMainPage();
+        FeeSummaryGenerate s = new FeeSummaryGenerate();
+        a.setVisible(true);
+        s.setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
