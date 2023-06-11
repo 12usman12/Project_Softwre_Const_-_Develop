@@ -297,7 +297,7 @@ public class FeeSummaryGenerate extends javax.swing.JFrame {
         
         int calschol = Integer.parseInt(ScholarShip);
         int late =Integer.parseInt(LateSubmition);
-        int Total = late+Fee - ((calschol)*Fee/100);
+        int Total = Fee - ((calschol)*Fee/100);
         
         
         
