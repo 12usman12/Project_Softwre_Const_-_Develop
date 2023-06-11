@@ -4,9 +4,10 @@
  */
 package group_g_bse203030.bse203022.bse203031;
 
-import com.mysql.jdbc.PreparedStatement;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
@@ -135,26 +136,21 @@ public class Enroll_course_Foam extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
+        String comb1 = c1.getSelectedItem().toString();
+        int sec = Integer.parseInt(t1.getText());
+        int ch = Integer.parseInt(t2.getText());
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scd_project", "root","");
-                String sql = "insert into enroll_course values (?,?,?)";
-                
-                PreparedStatement p = con.prepareStatement(sql);
-                p.setString(1, sql);
-                p.setString(2, sql);
-                p.setString(3, sql);
-                
-                
-            con.close();    
+                String sql = "insert into enroll_course(Course,Section,CreditHours) values ('"+comb1+"','"+sec+"','"+ch+"')";
+               Statement st = con.createStatement();
+               st.executeUpdate(sql);  
             
             
         }
-        catch(SQLException ex){
+        catch(Exception ex){
             System.out.println("Error occure on connecting database");
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Attendence_foam.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
         }
         
 
