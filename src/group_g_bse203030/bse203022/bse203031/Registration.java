@@ -97,6 +97,7 @@ public class Registration extends javax.swing.JFrame {
         jTextField10.setText("jTextField10");
 
         jButton1.setBackground(new java.awt.Color(0, 255, 0));
+        jButton1.setForeground(new java.awt.Color(51, 51, 0));
         jButton1.setText("Signup ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
