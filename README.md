@@ -1,6 +1,7 @@
 # Project_Softwre_Const_-_Develop
-
-#Functional Requirements
+  This is Student Portal Project where Student and Admin will Perform Different types of Functionalities.
+<hr>
+# Functional Requirements
 1. Student should be able to register the account.
 2. Student should be able to login to the account.
 3. The student should be able to add, edit, and delete student profiles. It should store relevant information such as student name, address, contact details, date of birth, and other necessary personal information.
