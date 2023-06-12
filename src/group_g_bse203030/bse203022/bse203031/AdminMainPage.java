@@ -146,14 +146,17 @@ public class AdminMainPage extends javax.swing.JFrame {
         
          if(getString.equals("Change Password"))
         {
+            
             ChangePassword c = new ChangePassword();
-            MainPageForStudent m = new MainPageForStudent();
+            c.AdminV=true;
+            AdminMainPage m = new AdminMainPage();
             c.setVisible(true);
             m.setVisible(false);
             dispose();
         }
         else if(getString.equals("File"))
         {
+            
             AdminMainPage m = new AdminMainPage();
             m.setVisible(true);
             dispose();

@@ -21,7 +21,7 @@ public class MainPageForStudent extends javax.swing.JFrame {
      */
     public void User(String Name)
     {
-        jLabel1.setText("Welcome"+Name);
+        jLabel1.setText("Welcome  "+Name);
     }
     public MainPageForStudent() {
         initComponents();
@@ -206,8 +206,9 @@ public class MainPageForStudent extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
         String getString = jComboBox2.getSelectedItem().toString();
@@ -224,7 +225,9 @@ public class MainPageForStudent extends javax.swing.JFrame {
                 }
             case "Change Password":
                 {
+                    
                     ChangePassword c = new ChangePassword();
+                    c.StudentV = true;
                     MainPageForStudent m = new MainPageForStudent();
                     c.setVisible(true);
                     m.setVisible(false);

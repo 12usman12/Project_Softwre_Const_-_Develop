@@ -22,7 +22,8 @@ public class ChangePassword extends javax.swing.JFrame {
     public ChangePassword() {
         initComponents();
     }
-
+    public boolean StudentV,AdminV;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -163,11 +164,24 @@ public class ChangePassword extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         ChangePassword c = new ChangePassword();
+        ChangePassword c = new ChangePassword();
             MainPageForStudent m = new MainPageForStudent();
+            AdminMainPage a = new AdminMainPage();
+        
+        if(StudentV==true)
+        {
             c.setVisible(false);
             m.setVisible(true);
             dispose();
+        }  
+        else if(AdminV==true)
+        {
+            c.setVisible(false);
+            a.setVisible(true);
+            dispose();
+        }
+         
+            
     }//GEN-LAST:event_jButton2ActionPerformed
     void pubdate()
     {
