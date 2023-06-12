@@ -243,7 +243,7 @@ public class Registration extends javax.swing.JFrame {
             
         }catch(Exception e)
         {
-            e.getMessage();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
         
