@@ -6,7 +6,7 @@ package group_g_bse203030.bse203022.bse203031;
 
 /**
  *
- * @author Osaf Ahmed
+ * @author Osaf
  */
 public class AdminMainPage extends javax.swing.JFrame {
 
@@ -16,7 +16,10 @@ public class AdminMainPage extends javax.swing.JFrame {
     public AdminMainPage() {
         initComponents();
     }
-
+    public void User(String Name)
+    {
+        jLabel1.setText("Welcome "+Name);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,7 +160,11 @@ public class AdminMainPage extends javax.swing.JFrame {
         }
         else if(getString.equals("LogOut"))
         {
-
+            LoginForm l = new LoginForm();
+            AdminMainPage m = new AdminMainPage();
+            l.setVisible(true);
+            m.setVisible(false);
+            dispose();
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
